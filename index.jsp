@@ -100,15 +100,15 @@
                         // Check if sessionId matches
                         if (sessionId != null && (sessionId.equals(RsessionId) || compareSessionId.equals(RsessionId))) {
                     %>
-                            <li><a href="https://www.4tier.store?userId=<%= userId %>&sessionId=<%= compareSessionId %>">메인 페이지</a></li>
+                            <li><a href="http://www.4tier.store?userId=<%= userId %>&sessionId=<%= compareSessionId %>">메인 페이지</a></li>
                             <li><a href="/board?userId=<%= userId %>&sessionId=<%= compareSessionId %>">고객센터</a></li>
                             <li><a href="/write?userId=<%= userId %>&sessionId=<%= compareSessionId %>">로그인</a></li>
-                            <li><a href="https://www.4tier.store/member/event.jsp?userId=<%= userId %>&sessionId=<%= compareSessionId %>">마일리지 상품</a></li>
+                            <li><a href="http://www.4tier.store/member/event.jsp?userId=<%= userId %>&sessionId=<%= compareSessionId %>">마일리지 상품</a></li>
                             <li>
                                 <span style="color: black;">
                                     <%= userId %>
                                 </span><span style="color: black;">님 환영합니다.</span>
-                                <a href="https://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
+                                <a href="http://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
                             </li>
                     <%
                         } else {

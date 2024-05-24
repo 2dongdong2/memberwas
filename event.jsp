@@ -119,14 +119,14 @@
             <!-- Header Content -->
         </div>
         <div class="banner">
-            <button onclick="location.href='https://www.4tier.store/mileage_products'">마일리지 상품</button>
+            <button onclick="location.href='http://www.4tier.store/mileage_products'">마일리지 상품</button>
             <div class="session-info">
                 <% 
                     String userId = (String) session.getAttribute("userId");
                     if (userId != null) { 
                 %>
                     <span style="color: #009688;"><%= userId %>님 환영합니다.</span>
-                    <a href="https://www.4tier.store/login/logout.jsp" style="color: #009688;">Logout</a>
+                    <a href="http://www.4tier.store/login/logout.jsp" style="color: #009688;">Logout</a>
                 <% } else { %>
                     <a href="/login" style="color: #009688;">로그인</a>
                 <% } %>
@@ -137,14 +137,14 @@
                 <% 
                     if (userId != null) { 
                 %>
-                    <li><a href="https://www.4tier.store?userId=<%= userId %>&sessionId=<%= session.getId() %>">메인 페이지</a></li>
+                    <li><a href="http://www.4tier.store?userId=<%= userId %>&sessionId=<%= session.getId() %>">메인 페이지</a></li>
                     <li><a href="/board?userId=<%= userId %>&sessionId=<%= session.getId() %>">고객센터</a></li>
                     <li><a href="/write?userId=<%= userId %>&sessionId=<%= session.getId() %>">게시글 작성</a></li>
                     <li><a href="event.jsp?userId=<%= userId %>&sessionId=<%= session.getId() %>">마일리지 상품</a></li>
                 <% 
                     } else { 
                 %>
-                    <li><a href="https://www.4tier.store/">메인 페이지</a></li>
+                    <li><a href="http://www.4tier.store/">메인 페이지</a></li>
                     <li><a href="/board">고객센터</a></li>
                     <li><a href="/login">로그인</a></li>
                     <li><a href="event.jsp">마일리지 상품</a></li>
