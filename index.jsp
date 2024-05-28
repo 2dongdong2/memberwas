@@ -100,7 +100,7 @@
 
                     if (isLoggedIn) {
                     %>
-                        <li><a href="https://www.4tier.store">메인 페이지</a></li>
+                        <li><a href="https://4tier.store">메인 페이지</a></li>
                         <li><a href="/board">고객센터</a></li>
                         <li><a href="/login">로그인</a></li>
                         <li><a href="event.jsp">마일리지 상품</a></li>
