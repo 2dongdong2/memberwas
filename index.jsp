@@ -105,7 +105,7 @@
                         <li><a href="/login">로그인</a></li>
                         <li><a href="event.jsp">마일리지 상품</a></li>
                         <li>
-                            <span style="color: black;"><%= userId %>님 환영합니다.</span>
+                            <span style="color: black;"><%= userId = sessionId%>님 환영합니다.</span>
                             <a href="https://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
                         </li>
                     <%
