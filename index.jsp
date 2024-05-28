@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="redis.clients.jedis.Jedis"%>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -105,7 +105,7 @@
                         <li><a href="/login">로그인</a></li>
                         <li><a href="event.jsp">마일리지 상품</a></li>
                         <li>
-                            <span style="color: black;"><%= userId = sessionId%>님 환영합니다.</span>
+                            <span style="color: black;"><%= userId %>님 환영합니다.</span>
                             <a href="https://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
                         </li>
                     <%
