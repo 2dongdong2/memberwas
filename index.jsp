@@ -86,10 +86,13 @@
                     String compareSessionId = session.getId();
                     String sessionId = request.getParameter("sessionId");
                     String userId = request.getParameter("userId");
-         	        session.setAttribute("userId", userId);
-                    userId = (String) session.getAttribute("userId");
+
+                    Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
+                    String redisSessionId = null;
+
+
                     // Check if userId is null or sessionId is "temp"
-                    if (userId == null || sessionId == null) {
+                    if (userId != null && !userId.equals("null")) {
                     %>
                         <li><a href="https://www.4tier.store/">메인 페이지</a></li>
                         <li><a href="/board">고객센터</a></li>
@@ -98,12 +101,12 @@
                     <%
                     } else {
                         // Check if sessionId matches
-                        if (sessionId != null && (sessionId.equals(RsessionId) || compareSessionId.equals(RsessionId))) {
+                        if (userId == null || userId.equals("null")) {
                     %>
-                            <li><a href="https://www.4tier.store?userId=<%= userId %>&sessionId=<%= compareSessionId %>">메인 페이지</a></li>
-                            <li><a href="/board?userId=<%= userId %>&sessionId=<%= compareSessionId %>">고객센터</a></li>
-                            <li><a href="/write?userId=<%= userId %>&sessionId=<%= compareSessionId %>">로그인</a></li>
-                            <li><a href="event.jsp?userId=<%= userId %>&sessionId=<%= compareSessionId %>">마일리지 상품</a></li>
+                            <li><a href="https://www.4tier.store?userId=<%= userId %>">메인 페이지</a></li>
+                            <li><a href="/board?userId=<%= userId %>&userId=<%= userId %>">고객센터</a></li>
+                            <li><a href="/write?userId=<%= userId %>&sessionId=<%= userId %>">로그인</a></li>
+                            <li><a href="event.jsp?userId=<%= userId %>&sessionId=<%= userId %>">마일리지 상품</a></li>
                             <li>
                                 <span style="color: black;">
                                     <%= userId %>
