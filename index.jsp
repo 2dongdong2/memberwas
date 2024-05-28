@@ -136,7 +136,7 @@
         </div>
         <div class="main-content">
             <h1>회원 전용 사이트에 오신걸 환영합니다</h1>
-            <img src="image.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
+            <img src="products1.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
         </div>
     </div>
 </body>
