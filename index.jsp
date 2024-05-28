@@ -74,54 +74,56 @@
 <body>
     <div class="wrap">
         <div class="header">
-            <ul class="nav">
-                <% 
-                String RsessionId = request.getRequestedSessionId();
-                String compareSessionId = session.getId();
-                String sessionId = request.getParameter("sessionId");
-                String userId = request.getParameter("userId");
+            <div class="searchArea">
+                <form>
+                    <input type="search" placeholder="search">
+                    <span>검색</span>
+                </form>
+            </div>
+            <div class="nav">
+                <ul>
+                    <%
+                    String userId = request.getParameter("userId");
+                    String sessionId = request.getParameter("sessionId");
+                    
+                    boolean isLoggedIn = false;
+                    if (userId != null && sessionId != null) {
+                        try {
+                            Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379);
+                            String redisSessionId = jedis.get(userId);
+                            jedis.close();
+                            if (redisSessionId != null) {
+                                isLoggedIn = sessionId.equals(redisSessionId);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-                Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
-                String redisSessionId = null;
-              
-                if (userId != null && !userId.equals("null")) {
-                    // Redis에서 sessionId 가져오기
-                    redisSessionId = jedis.get(userId);
-                }
-                
-                // Check if userId is null or sessionId is "temp"
-                if (userId == null || userId.equals("null")) {
-                %>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/board">BOARD</a></li>
-                    <li><a href="/event">EVENT</a></li>
-                    <li><a href="/login">LOGIN</a></li>
-                <% 
-                } else {
-                    if (!userId.equals("null") && redisSessionId != null) {
-                %>
-                        <li><a href="https://4tier.store?userId=<%= userId %>">HOME</a></li>
-                        <li><a href="https://4tier.store/board?userId=<%= userId %>">BOARD</a></li>
-                        <li><a href="https://4tier.store/event?userId=<%= userId %>">EVENT</a></li>
+                    
+
+                    if (isLoggedIn) {
+                    %>
+                        <li><a href="https://4tier.store">메인 페이지</a></li>
+                        <li><a href="/board">고객센터</a></li>
+                        <li><a href="/login">로그인</a></li>
+                        <li><a href="event.jsp">마일리지 상품</a></li>
                         <li>
-                            <span style="color: rgb(41, 112, 255);">
-                                <%= userId %>
-                            </span><span style="color: white;">님 환영합니다.</span><a href="https://4tier.store/login/logout.jsp?userId=<%= userId %>" style="color: white;">Logout</a>
+                            <span style="color: black;"><%= userId %>님 환영합니다.</span>
+                            <a href="https://4tier.store/login/logout.jsp" style="color: black;">Logout</a>
                         </li>
-                    <% 
+                    <%
                     } else {
                     %>
-                        <li><a href="/">HOME</a></li>
-                        <li><a href="/board">BOARD</a></li>
-                        <li><a href="/event">EVENT</a></li>
-                        <li><a href="/login">LOGIN</a></li>
-                    <% 
+                        <li><a href="https://www.4tier.store">메인 페이지</a></li>
+                        <li><a href="/board">고객센터</a></li>
+                        <li><a href="/login">로그인</a></li>
+                        <li><a href="event.jsp">마일리지 상품</a></li>
+                    <%
                     }
-                } 
-                %>
-            </ul>
-        </div>
-
+                    %>
+                </ul>
+            </div>
         </div>
         <div class="banner">
             <button onclick="location.href='/best'">마일리지 상품</button>
