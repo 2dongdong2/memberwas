@@ -113,7 +113,7 @@
                         <li>
                             <span style="color: rgb(41, 112, 255);">
                                 <%= userId %>
-                            </span><span style="color: white;">님 환영합니다.</span><a href="https://4tier.store/login/logout.jsp?userId=<%= userId %>" style="color: white;">Logout</a>
+                            </span><span style="color: black;">님 환영합니다.</span><a href="https://4tier.store/login/logout.jsp?userId=<%= userId %>" style="color: white;">Logout</a>
                         </li>
                     <% 
                     } else {
