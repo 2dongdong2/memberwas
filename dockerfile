@@ -22,7 +22,7 @@ RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.
     mv jedis-3.7.1.jar $CATALINA_HOME/lib/
 
 
-COPY ./redis-data-cache.properties $CATALINA_HOME/conf/
+COPY redis-data-cache.properties $CATALINA_HOME/conf/
 COPY event.jsp $CATALINA_HOME/webapps/ROOT/
 COPY index.jsp $CATALINA_HOME/webapps/ROOT/
 COPY products1.jpg $CATALINA_HOME/webapps/ROOT/
