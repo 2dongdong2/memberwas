@@ -122,7 +122,18 @@
             <button onclick="location.href='http://www.4tier.store/mileage_products'">마일리지 상품</button>
             <div class="session-info">
                 <% 
-                    String userId = (String) session.getAttribute("userId");
+                String RsessionId = request.getRequestedSessionId();
+                String compareSessionId = session.getId();
+                String sessionId = request.getParameter("sessionId");
+                String userId = request.getParameter("userId");
+
+                Jedis jedis = new Jedis("bm-prd-redis-pri-test.xd819b.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
+                    String redisSessionId = null;
+
+                if (userId != null && !userId.equals("null")) {
+                redisSessionId = jedis.get(userId);
+                
+                    }
                     if (userId != null) { 
                 %>
                     <span style="color: #009688;"><%= userId %>님 환영합니다.</span>
