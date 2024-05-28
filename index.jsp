@@ -89,7 +89,7 @@
                     boolean isLoggedIn = false;
                     if (userId != null && sessionId != null) {
                         try {
-                            Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379);
+                            Jedis jedis = new Jedis("pj2.tcnvoh.ng.0001.apn2.cache.amazonaws.com", 6379);
                             String redisSessionId = jedis.get(userId);
                             jedis.close();
                             if (redisSessionId != null) {
