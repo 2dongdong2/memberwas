@@ -127,14 +127,11 @@
                 String sessionId = request.getParameter("sessionId");
                 String userId = request.getParameter("userId");
 
-                Jedis jedis = new Jedis("pj2.tcnvoh.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
-                    String redisSessionId = null;
+                Jedis jedis = new Jedis("bm-prd-redis-pri-test.xd819b.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
+                String redisSessionId = null;
 
-                if (userId != null && !userId.equals("null")) {
-                redisSessionId = jedis.get(userId);
-                
-                    }
                     if (userId != null) { 
+                    redisSessionId = jedis.get(userId);
                 %>
                     <span style="color: #009688;"><%= userId %>님 환영합니다.</span>
                     <a href="http://www.4tier.store/login/logout.jsp" style="color: #009688;">Logout</a>
