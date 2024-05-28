@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="redis.clients.jedis.Jedis" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -130,7 +131,7 @@
                 Jedis jedis = new Jedis("pj2.tcnvoh.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
                 String redisSessionId = null;
 
-                    if (userId != null) { 
+                if (userId != null) { 
                     redisSessionId = jedis.get(userId);
                 %>
                     <span style="color: #009688;"><%= userId %>님 환영합니다.</span>
@@ -143,21 +144,21 @@
         <div class="nav">
             <ul>
                 <% 
-                    if (userId != null) { 
+                if (userId != null) { 
                 %>
                     <li><a href="http://www.4tier.store?userId=<%= userId %>&sessionId=<%= session.getId() %>">메인 페이지</a></li>
                     <li><a href="/board?userId=<%= userId %>&sessionId=<%= session.getId() %>">고객센터</a></li>
                     <li><a href="/write?userId=<%= userId %>&sessionId=<%= session.getId() %>">게시글 작성</a></li>
                     <li><a href="event.jsp?userId=<%= userId %>&sessionId=<%= session.getId() %>">마일리지 상품</a></li>
                 <% 
-                    } else { 
+                } else { 
                 %>
                     <li><a href="http://www.4tier.store/">메인 페이지</a></li>
                     <li><a href="/board">고객센터</a></li>
                     <li><a href="/login">로그인</a></li>
                     <li><a href="event.jsp">마일리지 상품</a></li>
                 <% 
-                    } 
+                } 
                 %>
             </ul>
         </div>
@@ -180,4 +181,4 @@
         </div>
     </div>
 </body>
-</html></head>
+</html>
