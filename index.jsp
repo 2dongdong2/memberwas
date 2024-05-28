@@ -111,7 +111,7 @@
                         <li><a href="https://4tier.store/board?userId=<%= userId %>">BOARD</a></li>
                         <li><a href="https://4tier.store/member/event.jsp?userId=<%= userId %>">EVENT</a></li>
                         <li>
-                            <span style="color: rgb(41, 112, 255);">
+                            <span style="color: rgb(0, 0, 0);">
                                 <%= userId %>
                             </span><span style="color: black;">님 환영합니다.</span><a href="https://4tier.store/login/logout.jsp?userId=<%= userId %>" style="color: white;">Logout</a>
                         </li>
