@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="redis.clients.jedis.Jedis"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -18,14 +19,14 @@
             padding: 20px;
         }
         .header, .nav {
- 		   background-color: #fff;
-    	   padding: 10px;
-    	   border-radius: 5px;
-    	   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    	   margin-bottom: 20px;
-    	   color: #000; /* 텍스트 색상을 검은색으로 설정 */
-    	   font-weight: bold; /* 글씨체를 굵게 설정 */
-		}
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            color: #000; /* 텍스트 색상을 검은색으로 설정 */
+            font-weight: bold; /* 글씨체를 굵게 설정 */
+        }
         .nav ul {
             list-style: none;
             padding: 0;
@@ -82,46 +83,39 @@
             <div class="nav">
                 <ul>
                     <%
-                    String RsessionId = request.getRequestedSessionId();
-                    String compareSessionId = session.getId();
-                    String sessionId = request.getParameter("sessionId");
                     String userId = request.getParameter("userId");
+                    String sessionId = request.getParameter("sessionId");
+                    
+                    boolean isLoggedIn = false;
+                    if (userId != null && sessionId != null) {
+                        try {
+                            Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379);
+                            String redisSessionId = jedis.get(userId);
+                            jedis.close();
+                            isLoggedIn = sessionId.equals(redisSessionId);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-                    Jedis jedis = new Jedis("redis-ela.hxmkqr.ng.0001.apn2.cache.amazonaws.com", 6379); // Redis 서버 주소와 포트
-                    String redisSessionId = null;
-
-
-                    // Check if userId is null or sessionId is "temp"
-                    if (userId != null && !userId.equals("null")) {
+                    if (isLoggedIn) {
                     %>
-                        <li><a href="https://www.4tier.store/">메인 페이지</a></li>
+                        <li><a href="https://www.4tier.store">메인 페이지</a></li>
+                        <li><a href="/board">고객센터</a></li>
+                        <li><a href="/login">로그인</a></li>
+                        <li><a href="event.jsp">마일리지 상품</a></li>
+                        <li>
+                            <span style="color: black;"><%= userId %>님 환영합니다.</span>
+                            <a href="https://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
+                        </li>
+                    <%
+                    } else {
+                    %>
+                        <li><a href="https://www.4tier.store">메인 페이지</a></li>
                         <li><a href="/board">고객센터</a></li>
                         <li><a href="/login">로그인</a></li>
                         <li><a href="event.jsp">마일리지 상품</a></li>
                     <%
-                    } else {
-                        // Check if sessionId matches
-                        if (userId == null || userId.equals("null")) {
-                    %>
-                            <li><a href="https://www.4tier.store?userId=<%= userId %>">메인 페이지</a></li>
-                            <li><a href="/board?userId=<%= userId %>&userId=<%= userId %>">고객센터</a></li>
-                            <li><a href="/write?userId=<%= userId %>&sessionId=<%= userId %>">로그인</a></li>
-                            <li><a href="event.jsp?userId=<%= userId %>&sessionId=<%= userId %>">마일리지 상품</a></li>
-                            <li>
-                                <span style="color: black;">
-                                    <%= userId %>
-                                </span><span style="color: black;">님 환영합니다.</span>
-                                <a href="https://www.4tier.store/login/logout.jsp" style="color: black;">Logout</a>
-                            </li>
-                    <%
-                        } else {
-                    %>
-                    <li><a href="/">메인 페이지</a></li>
-                    <li><a href="/board">고객센터</a></li>
-                    <li><a href="/write">로그인</a></li>
-                    <li><a href="event.jsp">마일리지 상품</a></li>
-                    <%
-                        }
                     }
                     %>
                 </ul>
@@ -135,7 +129,7 @@
         </div>
         <div class="main-content">
             <h1>회원 전용 사이트에 오신걸 환영합니다</h1>
-             <img src="image.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
+            <img src="image.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
         </div>
     </div>
 </body>
