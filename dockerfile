@@ -27,6 +27,7 @@ COPY event.jsp $CATALINA_HOME/webapps/ROOT/
 COPY index.jsp $CATALINA_HOME/webapps/ROOT/
 COPY products1.jpg $CATALINA_HOME/webapps/ROOT/
 COPY products2.jpg $CATALINA_HOME/webapps/ROOT/
+COPY image.jpg $CATALINA_HOME/webapps/ROOT/
 COPY mysql-connector-j-8.4.0.jar $CATALINA_HOME/lib/
 
 FROM alpine:latest
@@ -44,3 +45,4 @@ COPY --from=builder $CATALINA_HOME $CATALINA_HOME
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
+
