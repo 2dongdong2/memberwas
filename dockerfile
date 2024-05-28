@@ -23,6 +23,7 @@ COPY products2.jpg /usr/local/tomcat/webapps/ROOT/
 COPY image.jpg /usr/local/tomcat/webapps/ROOT/
 COPY redis-data-cache.properties /usr/local/tomcat/conf/
 COPY jedis-3.7.1.jar /usr/local/tomcat/lib/
+COPY jedis-3.7.1.jar /usr/lib/jvm/java-1.8-openjdk/lib/
 # Final stage
 FROM alpine:latest
 
